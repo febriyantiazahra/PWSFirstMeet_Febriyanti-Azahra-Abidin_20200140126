@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import praktikum.toko_kue.exceptions.NonexistentEntityException;
@@ -25,11 +26,16 @@ public class DetailTransaksiJpaController implements Serializable {
     public DetailTransaksiJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("praktikum_toko_kue_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
+    public DetailTransaksiJpaController() {
+    }
+    
+   
 
     public void create(DetailTransaksi detailTransaksi) throws PreexistingEntityException, Exception {
         EntityManager em = null;
